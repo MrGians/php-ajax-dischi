@@ -46,14 +46,13 @@
       <!-- Main -->
       <main>
         <!-- Loader -->
-        <div v-if="discs.length !== 6" class="loader">
+        <div v-if="!discs.length" class="loader">
           <strong>Discs List is loading...</strong>
         </div>
         <!-- Discs List -->
         <div v-else id="discs-list">
           <div class="container">
-            <!-- TODO Se l'array risultante dal filtro di ricerca è >= 1 mostra i risultati -->
-            <div class="row py-3">
+            <div v-if="discs.length >= 1" class="row py-3">
               <div v-for="disc in discs" :key="disc.title" class="col py-3">
                 <div class="disc-card">
                   <img :src="disc.poster" :alt="disc.title" />
@@ -63,8 +62,7 @@
                 </div>
               </div>
             </div>
-            <!-- TODO Altrimenti mostra un avviso di "Nessun risultato trovato" -->
-            <div>
+            <div v-else>
               <h2 class="text-center text-light py-5">Non è stato trovato nessun risultato..</h2>
             </div>
           </div>
