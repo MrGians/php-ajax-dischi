@@ -21,16 +21,6 @@ include __DIR__ . '/../api/discs/index.php';
     <div class="container-lg">
       <div id="navbar">
         <img src="./../assets/img/logo.svg" alt="Spotify Logo" />
-        <div class="search-filters">
-          <!-- Disc Genre Select -->
-          <!-- TODO DINAMIC OPTION -->
-          <select>
-            <option value="" selected>Seleziona un artista</option>
-            <option value="pop">Pop</option>
-            <option value="rock">Rock</option>
-            <option value="jazz">Jazz</option>
-          </select>
-        </div>
       </div>
     </div>
   </header>
@@ -38,32 +28,29 @@ include __DIR__ . '/../api/discs/index.php';
   <!-- Main -->
   <main>
     <!-- Loader -->
-    <!-- TODO Se la lunghezza dell'array dei dischi è diverso da 10 mostra il loader -->
+    <?php if (count($discs) !== 6) : ?>
     <div class="loader">
       <strong>Discs List is loading...</strong>
     </div>
     <!-- Discs List -->
-    <!-- TODO Altrimenti mostra la lista dei dischi -->
-    <div v-else id="discs-list">
+    <?php else : ?>
+    <div id="discs-list">
       <div class="container">
-        <!-- TODO Se l'array risultante dal filtro di ricerca è >= 1 mostra i risultati -->
         <div class="row py-3">
-          <!-- TODO DINAMIC CARDS -->
+          <?php foreach($discs as $disc) : ?>
           <div class="col py-3">
             <div class="disc-card">
-              <img src="disc.poster" alt="disc.title" />
-              <h6 class="disc-name">disc.title</h6>
-              <div class="artist">disc.author</div>
-              <div class="date">disc.year</div>
+              <img src="<?php echo $disc['poster']?>" alt="<?php echo $disc['title']?>" />
+              <h6 class="disc-name"><?php echo $disc['title']?></h6>
+              <div class="artist"><?php echo $disc['author']?></div>
+              <div class="date"><?php echo $disc['year']?></div>
             </div>
           </div>
-        </div>
-        <!-- TODO Altrimenti mostra un avviso di "Nessun risultato trovato" -->
-        <div>
-          <h2 class="text-center text-light py-5">Non è stato trovato nessun risultato..</h2>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
+    <?php endif; ?>
   </main>
 </body>
 </html>
