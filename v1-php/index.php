@@ -1,7 +1,6 @@
 <?php 
-include 'includes';
+include __DIR__ . '/../api/discs/index.php';
 
-var_dump($discs)
 ?>
 
 <!DOCTYPE html>
