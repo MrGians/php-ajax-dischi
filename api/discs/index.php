@@ -45,5 +45,16 @@
         ]
     ];
 
+    $results = $discs;
+
+    $genre = $_GET['genre'] ?? '';
+
+    if($genre) {
+        $results = [];
+        foreach($discs as $disc) {
+            if ($genre === $disc['genre']) $results[] = $disc;
+        }
+    }
+
     header("Content-Type: application/json");
     echo json_encode($discs);
