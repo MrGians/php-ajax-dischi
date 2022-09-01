@@ -32,16 +32,6 @@
         <div class="container-lg">
           <div id="navbar">
             <img src="./../assets/img/logo.svg" alt="Spotify Logo" />
-            <div class="search-filters">
-              <!-- Disc Genre Select -->
-              <!-- TODO DINAMIC OPTION -->
-              <select>
-                <option value="" selected>Seleziona un artista</option>
-                <option value="pop">Pop</option>
-                <option value="rock">Rock</option>
-                <option value="jazz">Jazz</option>
-              </select>
-            </div>
           </div>
         </div>
       </header>
@@ -49,30 +39,24 @@
       <!-- Main -->
       <main>
         <!-- Loader -->
-        <!-- TODO Se la lunghezza dell'array dei dischi è diverso da 10 mostra il loader -->
-        <div class="loader">
+        <div v-if="discs.length !== 6" class="loader">
           <strong>Discs List is loading...</strong>
         </div>
         <!-- Discs List -->
-        <!-- TODO Altrimenti mostra la lista dei dischi -->
-        <div id="discs-list">
+        <div v-else id="discs-list">
           <div class="container">
             <!-- TODO Se l'array risultante dal filtro di ricerca è >= 1 mostra i risultati -->
             <div class="row py-3">
-              <!-- TODO DINAMIC CARDS -->
-              <div class="col py-3">
+              <div v-for="disc in discs" :key="disc.title" class="col py-3">
                 <div class="disc-card">
-                  <img src="disc.poster" alt="disc.title" />
-                  <h6 class="disc-name">disc.title</h6>
-                  <div class="artist">disc.author</div>
-                  <div class="date">disc.year</div>
+                  <img :src="disc.poster" :alt="disc.title" />
+                  <h6 class="disc-name">{{disc.title}}</h6>
+                  <div class="artist">{{disc.author}}</div>
+                  <div class="date">{{disc.year}}</div>
                 </div>
               </div>
             </div>
             <!-- TODO Altrimenti mostra un avviso di "Nessun risultato trovato" -->
-            <div>
-              <h2 class="text-center text-light py-5">Non è stato trovato nessun risultato..</h2>
-            </div>
           </div>
         </div>
       </main>
