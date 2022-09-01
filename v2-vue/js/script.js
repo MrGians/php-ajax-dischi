@@ -9,11 +9,9 @@ const app = new Vue({
   },
   methods: {
     fetchDiscs() {
-      axios
-        .get(`http://localhost/php-ajax-dischi/api/discs?genre=${this.genreChoice}`)
-        .then((res) => {
-          this.discs = res.data;
-        });
+      axios.get(`php-ajax-dischi/api/discs?genre=${this.genreChoice}`).then((res) => {
+        this.discs = res.data;
+      });
     },
   },
   computed: {
